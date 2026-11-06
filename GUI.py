@@ -1,3 +1,13 @@
+import os
+import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path and is the current working directory
+PROJECT_ROOT = Path(__file__).resolve().parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+os.chdir(PROJECT_ROOT)
+
 import customtkinter as ctk
 import numpy as np
 import re
@@ -194,7 +204,6 @@ class CelLabGUI(ctk.CTk):
             self.is_running = True
             # cream un thread daemon ca sa se inchida automat cand inchidem GUI-ul
             threading.Thread(target=self.sim_worker, daemon=True).start()
-
 
     def pause_simulation(self):
         # Opreste thread-ul de simulare si seteaza is_running la False
