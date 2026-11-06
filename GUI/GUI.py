@@ -195,6 +195,7 @@ class CelLabGUI(ctk.CTk):
             # cream un thread daemon ca sa se inchida automat cand inchidem GUI-ul
             threading.Thread(target=self.sim_worker, daemon=True).start()
 
+
     def pause_simulation(self):
         # Opreste thread-ul de simulare si seteaza is_running la False
         self.is_running = False
@@ -207,7 +208,7 @@ class CelLabGUI(ctk.CTk):
         if len(dimensions) == 2:
             self.world_size = (int(dimensions[0]), int(dimensions[1]))
         if len(dimensions) == 1:
-            self.world_size = (int(dimensions[0]), (dimensions[0]))
+            self.world_size = (int(dimensions[0]), int(dimensions[0]))
         self.init_automaton()
         self.update_canvas(self.automaton.get_grid())
 

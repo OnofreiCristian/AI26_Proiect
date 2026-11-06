@@ -66,6 +66,12 @@ class PredatorPreyAutomata(BaseAutomata):
 
     def step(self):
         new_grid = self.grid.copy()
+
+        # Test if automaton is stable (all cells are EMPTY)
+        if (new_grid == self.EMPTY).all():
+            self.stable = True
+            return None
+
         new_fox_energy = self.fox_energy.copy()
         new_rabbit_timer = self.rabbit_timer.copy()
         new_fox_timer = self.fox_timer.copy()
